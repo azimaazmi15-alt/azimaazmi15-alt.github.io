@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nur Azima Azwa — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF8F4;
+    --ink: #1C1B18;
+    --muted: #6E6B63;
+    --accent: #C17B4A;
+    --accent-light: #F0E4D6;
+    --border: rgba(28,27,24,0.12);
+    --card-bg: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.875rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 2rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 5rem;
+  }
+  .hero-text { flex: 1; }
+  .hero-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 5vw, 3.8rem);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-bio {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .badge {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--muted);
+    background: white;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--ink);
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .hero-cta:hover { background: var(--accent); transform: translateY(-1px); }
+  .hero-cta-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    margin-left: 0.75rem;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .hero-cta-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+  .hero-photo {
+    flex-shrink: 0;
+    width: 280px;
+    height: 360px;
+    border-radius: 4px 40px 4px 40px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--accent-light);
+    position: relative;
+  }
+  .hero-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem;
+    color: var(--accent);
+  }
+  .photo-placeholder svg { opacity: 0.5; }
+  .photo-placeholder p { font-size: 0.8rem; color: var(--muted); text-align: center; padding: 0 1rem; }
+
+  /* SECTION SHARED */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: var(--ink);
+    margin-bottom: 3rem;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 3rem;
+    margin-top: 0;
+  }
+  .about-item {}
+  .about-item-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+  }
+  .about-item-value {
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  }
+  .project-card.featured {
+    grid-column: span 2;
+  }
+  .project-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .project-img-placeholder {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem; width: 100%; height: 100%;
+    color: var(--muted);
+  }
+  .project-img-placeholder p { font-size: 0.78rem; }
+
+  .project-body { padding: 1.25rem 1.5rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
+  .project-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 100px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 1.25rem;
+  }
+  .project-links { display: flex; gap: 0.75rem; margin-top: auto; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.82rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .project-link:hover { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+  .project-link.primary {
+    background: var(--ink); color: white; border-color: var(--ink);
+  }
+  .project-link.primary:hover { background: var(--accent); border-color: var(--accent); }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-group {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+  .skill-group-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-pill {
+    font-size: 0.82rem;
+    color: var(--ink);
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.25rem 0.65rem;
+  }
+
+  /* CONTACT */
+  .contact-inner {
+    display: flex;
+    gap: 5rem;
+    align-items: flex-start;
+  }
+  .contact-text { flex: 1; }
+  .contact-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .contact-desc { color: var(--muted); margin-bottom: 2rem; max-width: 380px; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.75rem;
+    color: var(--ink); text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--accent); }
+  .contact-link-icon {
+    width: 36px; height: 36px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-text > * { animation: fadeUp 0.6s ease both; }
+  .hero-label { animation-delay: 0.1s; }
+  .hero-name { animation-delay: 0.2s; }
+  .hero-bio { animation-delay: 0.3s; }
+  .hero-badges { animation-delay: 0.35s; }
+  .hero-ctas { animation-delay: 0.4s; }
+  .hero-photo { animation: fadeUp 0.7s ease 0.25s both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { flex-direction: column-reverse; gap: 2.5rem; padding-top: 90px; text-align: center; }
+    .hero-photo { width: 200px; height: 250px; margin: 0 auto; }
+    .hero-badges { justify-content: center; }
+    .project-card.featured { grid-column: span 1; }
+    .contact-inner { flex-direction: column; gap: 2rem; }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Azima.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="about">
+  <div class="hero-text">
+    <p class="hero-label">Software Engineering Student</p>
+    <h1 class="hero-name">Nur Azima Azwa<br /><em>Binti Azmi</em></h1>
+    <p class="hero-bio">
+      Final-year Software Engineering student at UNITEN with strong academic performance and hands-on experience in software development. 
+      I build practical, user-focused systems — from web platforms and mobile apps 
+      to database-driven management tools. 
+    </p>
+    <div class="hero-badges">
+      <span class="badge">Java</span>
+      <span class="badge">Python</span>
+      <span class="badge">HTML / CSS</span>
+      <span class="badge">JavaScript</span>
+      <span class="badge">SQL</span>
+      <span class="badge">C++</span>
+      <span class="badge">.NET MAUI</span>
+    </div>
+    <div class="hero-ctas">
+      <a class="hero-cta" href="#projects">View my work →</a>
+      <a class="hero-cta-ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="hero-photo">
+    <img src="latest passport(waist).jpg" alt="Nur Azima Azwa" />
+  </div>
+</div>
+
+<!-- ABOUT STRIP -->
+<section style="padding-top: 0;">
+  <div class="about-strip">
+    <div class="about-item">
+      <p class="about-item-label">University</p>
+      <p class="about-item-value">Universiti Tenaga Nasional (UNITEN)</p>
+    </div>
+    <div class="about-item">
+      <p class="about-item-label">Degree</p>
+      <p class="about-item-value">Bachelor of Computer Science (Software Engineering) with Honours</p>
+    </div>
+    <div class="about-item">
+      <p class="about-item-label">CGPA</p>
+      <p class="about-item-value">3.82 — Dean's List, every semester</p>
+    </div>
+    <div class="about-item">
+      <p class="about-item-label">Certification</p>
+      <p class="about-item-value">CISCO CCNA: Introduction to Networks</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Selected Work</p>
+  <h2 class="section-title">Projects</h2>
+
+  <div class="projects-grid">
+
+    <!-- Project 1: Brew & Bloom -->
+    <div class="project-card">
+      <div class="project-img">
+        <img src="bbcover.png" alt="brewnbloom dashboard" />
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">HTML / CSS</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">Web</span>
+        </div>
+        <h3 class="project-title">Brew&Bloom Event Management</h3>
+        <p class="project-desc">
+          A web-based event management system with user registration, admin controls, and event listings. 
+          Features database-driven participant management, event quota enforcement and data validation.
+        </p>
+        <div class="project-links">
+          <a class="project-link primary" href="https://github.com/azimaazmi15-alt/brew-bloom-event-management-website" target="_blank">
+            
+            GitHub →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2: TinyWin -->
+    <div class="project-card">
+      <div class="project-img">
+        
+        <img src="logo_tinywin.png" alt="TinyWin logo" />
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">.NET MAUI</span>
+          <span class="project-tag">Mobile</span>
+          <span class="project-tag">Cross-platform</span>
+        </div>
+        <h3 class="project-title">TinyWin Mobile App</h3>
+        <p class="project-desc">
+          A cross-platform mobile app that helps users recognize and celebrate small daily achievements. 
+          Built with .NET MAUI, featuring clean navigation flow and event-driven architecture.
+        </p>
+        <div class="project-links">
+          <a class="project-link primary" href="https://github.com/azimaazmi15-alt/tinywin-mobile-application" target="_blank">
+            GitHub →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3: Faculty Performance -->
+    <div class="project-card">
+      <div class="project-img">
+        
+        <img src="fcover.png" alt="faculty performance management system output" />
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">Java</span>
+          <span class="project-tag">OOP</span>
+          <span class="project-tag">Desktop</span>
+        </div>
+        <h3 class="project-title">Faculty Performance Management</h3>
+        <p class="project-desc">
+          A Java-based record management system tracking faculty teaching and research performance. 
+          Supports search, report generation, and metrics including feedback scores and publications.
+        </p>
+        <div class="project-links">
+          <a class="project-link primary" href="https://github.com/azimaazmi15-alt/faculty-performance-management-system" target="_blank">
+            GitHub →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4: FYP -->
+    <div class="project-card">
+      <div class="project-img">
+        
+        <img src="uniguide-logo.png" alt="UniGuide.AI logo" />
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">Laravel</span>
+          <span class="project-tag">OpenAI API</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">FYP</span>
+        </div>
+        <h3 class="project-title">Final Year Project</h3>
+        <p class="project-desc">
+          An AI-powered academic advising web system for UNITEN students. 
+          Features a chatbot (OpenAI API) for instant answers on prerequisites 
+          and subject recommendations, plus a progress tracker that visualizes 
+          credits and academic performance. Built with Laravel & MySQL.
+        </p>
+        <div class="project-links">
+          <a class="project-link primary" target="_blank">
+            Still in Progress →
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">What I Know</p>
+  <h2 class="section-title">Skills & Tools</h2>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <p class="skill-group-title">Languages</p>
+      <div class="skill-pills">
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">Java</span>
+        <span class="skill-pill">C++</span>
+        <span class="skill-pill">HTML</span>
+        <span class="skill-pill">JavaScript</span>
+        <span class="skill-pill">SQL</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Tools & IDEs</p>
+      <div class="skill-pills">
+        <span class="skill-pill">Visual Studio</span>
+        <span class="skill-pill">VS Code</span>
+        <span class="skill-pill">NetBeans</span>
+        <span class="skill-pill">Jupyter</span>
+        <span class="skill-pill">Google Colab</span>
+        <span class="skill-pill">Canva</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Frameworks & Platforms</p>
+      <div class="skill-pills">
+        <span class="skill-pill">.NET MAUI</span>
+        <span class="skill-pill">Oracle DB</span>
+        <span class="skill-pill">MySQL</span>
+        <span class="skill-pill">Anaconda</span>
+        <span class="skill-pill">MATLAB</span>
+        <span class="skill-pill">Tableau</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Certifications</p>
+      <div class="skill-pills">
+        <span class="skill-pill">CISCO CCNA</span>
+        <span class="skill-pill">Microsoft Excel</span>
+        <span class="skill-pill">Microsoft Project</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-text">
+      <p class="section-label">Say Hello</p>
+      <h2 class="contact-title">Let's Connect</h2>
+      <p class="contact-desc">
+        I'm currently looking for internship opportunities for June–August 2026. 
+        If you think I'd be a good fit for your team, I'd love to hear from you!
+      </p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:azimaazmi15@gmail.com">
+          <div class="contact-link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+          </div>
+          azimaazmi15@gmail.com
+        </a>
+        <a class="contact-link" href="tel:+60108608490">
+          <div class="contact-link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.66A2 2 0 012 1h3a2 2 0 012 1.72c.127 1.004.36 1.987.7 2.93a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.943.34 1.927.574 2.93.7A2 2 0 0122 15v1.92z"/></svg>
+          </div>
+          +60 10-8608490
+        </a>
+        <a class="contact-link" href="https://github.com/azimaazmi15-alt" target="_blank">
+          
+          <div class="contact-link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77A5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </div>
+          GitHub Profile
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Nur Azima Azwa Binti Azmi · Built with HTML & CSS</p>
+</footer>
+
+</body>
+</html>
